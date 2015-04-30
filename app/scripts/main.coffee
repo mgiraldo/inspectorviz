@@ -23,6 +23,12 @@ class Viz
             dragging: true
         )
 
+        L.control.zoom(
+          position: 'topright'
+        ).addTo(@map)
+
+        L.easyButton("fa-play-circle", @togglePlayPause, "PLAY/PAUSE", @map, "play_pause")
+
         @poly_style = {
             stroke: false
             fillColor: '#000'
@@ -35,6 +41,12 @@ class Viz
 
         @map.on 'load', () =>
             @initMap()
+
+    togglePlayPause: () =>
+        if @playing
+            @stopAnimation()
+        else
+            @startAnimation()
 
     initMap: () ->
         bounds = new L.LatLngBounds()
@@ -64,7 +76,7 @@ class Viz
     getHistory: () ->
         $.getJSON('/geojson/history-226.geojson', (geojson) =>
             @history = geojson.features
-            @startAnimation()
+            # @startAnimation()
         )
 
     startAnimation: () ->
