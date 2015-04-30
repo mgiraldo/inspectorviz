@@ -64,7 +64,7 @@ class Viz
     getHistory: () ->
         $.getJSON('/geojson/history-226.geojson', (geojson) =>
             @history = geojson.features
-            # @startAnimation()
+            @startAnimation()
         )
 
     startAnimation: () ->
