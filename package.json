@@ -31,7 +31,10 @@
     "time-grunt": "1.1.1"
   },
   "engines": {
-    "node": "0.10.0"
+    "iojs": "1.8.1"
+  },
+  "scripts": {
+    "postinstall": "bower install && grunt build"
   },
   "repository": {
     "type": "git",
