@@ -4,6 +4,9 @@ class Viz
 
     constructor: (options) ->
         @voices = {}
+        @gain = 0
+        @minZoom = 18
+        @maxZoom = 21
         # Set to ♭, ♮, or ♯
         @voices["yes"] = new Beep.Voice( '1A♭').setOscillatorType( 'square' ).setGainHigh( 0.01 )
         @voices["no"] = new Beep.Voice( '1A♮').setOscillatorType( 'square' ).setGainHigh( 0.01 )
@@ -18,8 +21,8 @@ class Viz
             animate: true
             scrollWheelZoom: false
             attributionControl: false
-            minZoom: 18
-            maxZoom: 21
+            minZoom: @minZoom
+            maxZoom: @maxZoom
             dragging: true
         )
 
@@ -27,7 +30,7 @@ class Viz
           position: 'topright'
         ).addTo(@map)
 
-        L.easyButton("fa-play-circle", @togglePlayPause, "PLAY/PAUSE", @map, "play_pause")
+        L.easyButton("fa-play", @togglePlayPause, "PLAY/PAUSE", @map, "play_pause")
 
         @poly_style = {
             stroke: false
@@ -42,11 +45,16 @@ class Viz
         @map.on 'load', () =>
             @initMap()
 
+        @map.on 'zoomend', () =>
+            @onMapZoom()
+
     togglePlayPause: () =>
         if @playing
             @stopAnimation()
+            $(".fa-pause").removeClass("fa-pause").addClass("fa-play")
         else
             @startAnimation()
+            $(".fa-play").removeClass("fa-play").addClass("fa-pause")
 
     initMap: () ->
         bounds = new L.LatLngBounds()
@@ -72,6 +80,17 @@ class Viz
             @map.fitBounds(bounds)
             @getHistory()
         )
+
+    onMapZoom: () ->
+        zoom = @map.getZoom()
+        offset = (zoom - @minZoom) * 0.02
+        @voices["yes"].setGainHigh( 0.01 + offset )
+        @voices["no"].setGainHigh( 0.01 + offset )
+        @voices["fix"].setGainHigh( 0.01 + offset )
+        @voices["color"].setGainHigh( 0.01 + offset )
+        @voices["address"].setGainHigh( 0.01 + offset )
+        @voices["polygonfix"].setGainHigh( 0.01 + offset )
+        @voices["toponym"].setGainHigh( 0.01 + offset )
 
     getHistory: () ->
         $.getJSON('/geojson/history-226.geojson', (geojson) =>
@@ -152,7 +171,7 @@ class Viz
         if type != "geometry"
             voice = @voices[type]
             voice.play()
-            setTimeout((() => @muteVoice(voice)), 20 )
+            setTimeout((() => @muteVoice(voice)), 200 )
 
         @increaseElementValue("span.value.#{type}")
         @increaseElementValue("span.value.total")
