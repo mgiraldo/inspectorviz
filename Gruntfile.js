@@ -333,23 +333,38 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
-      dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= config.app %>',
-          dest: '<%= config.dist %>',
-          src: [
-            '*.{ico,png,txt}',
-            'images/{,*/}*.webp',
-            '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
-          ]
-        }, {
-          src: 'node_modules/apache-server-configs/dist/.htaccess',
-          dest: '<%= config.dist %>/.htaccess'
-        }]
-      },
+      // dist: {
+      //   files: [{
+      //     expand: true,
+      //     dot: true,
+      //     cwd: '<%= config.app %>',
+      //     dest: '<%= config.dist %>',
+      //     src: [
+      //       '*.{ico,png,txt}',
+      //       'images/{,*/}*.webp',
+      //       '{,*/}*.html',
+      //       'styles/fonts/{,*/}*.*'
+      //     ]
+      //   }, {
+      //     src: 'node_modules/apache-server-configs/dist/.htaccess',
+      //     dest: '<%= config.dist %>/.htaccess'
+      //   }]
+      // },
+        dist: {
+            files: [{
+                expand: true,
+                dest: '<%= yeoman.dist %>',
+                cwd: 'heroku',
+                src: '*',
+                rename: function (dest, src) {
+                    var path = require('path');
+                    if (src === 'distpackage.json') {
+                        return path.join(dest, 'package.json');
+                    }
+                    return path.join(dest, src);
+                }
+            }]
+        },
       styles: {
         expand: true,
         dot: true,
