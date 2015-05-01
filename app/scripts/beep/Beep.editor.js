@@ -102,7 +102,7 @@ Beep.editor = {
 				
 				if( node.nodeType === 3 ){
 					
-					var nextCharIndex = charIndex + node.length
+					nextCharIndex = charIndex + node.length
 
 					if( !foundStart && savedSel.start >= charIndex && savedSel.start <= nextCharIndex ){
 						
