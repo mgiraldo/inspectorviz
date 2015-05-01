@@ -398,7 +398,7 @@ module.exports = function (grunt) {
   });
 
 
-  grunt.registerTask('heroku:production', 'clean cssmin uglify');
+  grunt.registerTask('heroku:production', 'clean');
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
     if (grunt.option('allow-remote')) {
