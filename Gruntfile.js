@@ -308,63 +308,48 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
     // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/scripts/scripts.js': [
-    //         '<%= config.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= config.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css',
+            '<%= config.app %>/styles/{,*/}*.css'
+          ]
+        }
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          '<%= config.dist %>/scripts/scripts.js': [
+            '<%= config.dist %>/scripts/scripts.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      dist: {}
+    },
 
     // Copies remaining files to places other tasks can use
     copy: {
-      // dist: {
-      //   files: [{
-      //     expand: true,
-      //     dot: true,
-      //     cwd: '<%= config.app %>',
-      //     dest: '<%= config.dist %>',
-      //     src: [
-      //       '*.{ico,png,txt}',
-      //       'images/{,*/}*.webp',
-      //       '{,*/}*.html',
-      //       'styles/fonts/{,*/}*.*'
-      //     ]
-      //   }, {
-      //     src: 'node_modules/apache-server-configs/dist/.htaccess',
-      //     dest: '<%= config.dist %>/.htaccess'
-      //   }]
-      // },
-        dist: {
-            files: [{
-                expand: true,
-                dest: '<%= yeoman.dist %>',
-                cwd: 'heroku',
-                src: '*',
-                rename: function (dest, src) {
-                    var path = require('path');
-                    if (src === 'distpackage.json') {
-                        return path.join(dest, 'package.json');
-                    }
-                    return path.join(dest, src);
-                }
-            }]
-        },
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= config.app %>',
+          dest: '<%= config.dist %>',
+          src: [
+            '*.{ico,png,txt}',
+            'images/{,*/}*.webp',
+            '{,*/}*.html',
+            'styles/fonts/{,*/}*.*'
+          ]
+        }, {
+          src: 'node_modules/apache-server-configs/dist/.htaccess',
+          dest: '<%= config.dist %>/.htaccess'
+        }]
+      },
       styles: {
         expand: true,
         dot: true,
@@ -413,7 +398,7 @@ module.exports = function (grunt) {
   });
 
 
-  // grunt.registerTask('heroku', 'clean sass cssmin uglify');
+  grunt.registerTask('heroku', 'clean sass cssmin uglify');
 
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
