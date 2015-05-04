@@ -17,6 +17,7 @@ class Viz
         @voices["toponym"] = new Beep.Voice( '5E♭').setOscillatorType( 'square' ).setGainHigh( 0.01 )
 
         @map = L.mapbox.map('map', 'nypllabs.g6ei9mm0',
+            detectRetina: false
             zoomControl: false
             animate: true
             scrollWheelZoom: false
