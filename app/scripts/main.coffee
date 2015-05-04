@@ -69,7 +69,7 @@ class Viz
         #     @map.fitBounds(bounds)
         # )
 
-        $.getJSON('/geojson/polygons-226.geojson', (geojson) =>
+        $.getJSON('./geojson/polygons-226.geojson', (geojson) =>
             @poly_json = geojson
             @poly_layer = L.geoJson(geojson,
                 style: (feature) =>
@@ -93,7 +93,7 @@ class Viz
         @voices["toponym"].setGainHigh( 0.01 + offset )
 
     getHistory: () ->
-        $.getJSON('/geojson/history-226.geojson', (geojson) =>
+        $.getJSON('./geojson/history-226.geojson', (geojson) =>
             @history = geojson.features
             # @startAnimation()
         )
