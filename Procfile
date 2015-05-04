@@ -1,1 +1,1 @@
-web: ./node_modules/grunt serve
+web: grunt serve

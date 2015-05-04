@@ -9,24 +9,20 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/mapbox.js/mapbox.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
-
-    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet' />
-    <script charset="utf-8" src="/scripts/easy-button.js"></script>
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="beep/Beep.css">
     <link rel="stylesheet" type="text/css" href="beep/Beep.Trigger.css">
     <link rel="stylesheet" type="text/css" href="beep/Beep.Instrument.css">
     <link rel="stylesheet" type="text/css" href="beep/Beep.editor.css">
+
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
 
     <script charset="utf-8" src="/scripts/beep/Beep.js"></script>
     <script charset="utf-8" src="/scripts/beep/Beep.Note.js"></script>
@@ -34,6 +30,7 @@
     <script charset="utf-8" src="/scripts/beep/Beep.Trigger.js"></script>
     <script charset="utf-8" src="/scripts/beep/Beep.Instrument.js"></script>
     <script src="/scripts/animation.js"></script>
+    <!-- endbuild -->
 
     <style>
         body { margin:0; padding:0; }
@@ -75,6 +72,7 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/mapbox.js/mapbox.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -89,6 +87,7 @@
     </script>
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script charset="utf-8" src="/scripts/easy-button.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

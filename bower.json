@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "jquery": "~1.11.1",
+    "mapbox.js": "~2.1.9",
+    "fontawesome": "~4.3.0",
     "modernizr": "~2.8.2"
   }
 }
