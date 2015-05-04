@@ -61,13 +61,23 @@ body {
   padding: 0.2em 0;
 }
 
+#help {
+  width: 300px;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  margin-left: -150px;
+  text-align: center;
+  top: 40%;
+}
+
 #legend {
   position: absolute;
   left: 10px;
   top: 10px;
   width: 200px;
   font-size: 20px;
-  background: white;
+  background: #d6d2cb;
   border-radius: 3px;
   padding: 0 10px 10px;
 
