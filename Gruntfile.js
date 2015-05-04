@@ -355,6 +355,9 @@ module.exports = function (grunt) {
           src: 'bower_components/fontawesome/fonts/*',
           dest: '<%= config.dist %>/fonts/'
         }, {
+          src: 'bower_components/mapbox.js/mapbox.css',
+          dest: '<%= config.dist %>/styles/mapbox.css'
+        }, {
           expand: true,
           flatten: true,
           src: 'bower_components/mapbox.js/images/*',

@@ -24,6 +24,8 @@ class Viz
             minZoom: @minZoom
             maxZoom: @maxZoom
             dragging: true
+            tileLayer:
+                detectRetina: false
         )
 
         L.control.zoom(
