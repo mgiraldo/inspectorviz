@@ -23,6 +23,7 @@ class Viz
             attributionControl: false
             minZoom: @minZoom
             maxZoom: @maxZoom
+            detectRetina: false
             dragging: true
         )
 
