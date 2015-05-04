@@ -112,7 +112,7 @@ class Viz
         if obj != null
             obj.addTo(@map)
             # @map.panTo(obj.getBounds().getCenter()) if !@map.getBounds().contains(obj.getBounds().getCenter())
-            setTimeout((() => @killPolygon(obj)), 200 )
+            setTimeout((() => @killPolygon(obj)), 150 )
         @current_event++
         # console.log "showing", obj
         requestAnimationFrame(@nextEvent) if @playing && @current_event < @history.length # && @current_event < 4300
@@ -150,7 +150,7 @@ class Viz
             @increaseElementValue("span.value.#{flag}")
             voice = @voices[flag]
             voice.play()
-            setTimeout((() => @muteVoice(voice)), 100 )
+            setTimeout((() => @muteVoice(voice)), 150 )
         else if type == "address"
             geo = obj
         else if type == "color"
@@ -171,7 +171,7 @@ class Viz
         if type != "geometry"
             voice = @voices[type]
             voice.play()
-            setTimeout((() => @muteVoice(voice)), 100 )
+            setTimeout((() => @muteVoice(voice)), 150 )
 
         @increaseElementValue("span.value.#{type}")
         @increaseElementValue("span.value.total")
