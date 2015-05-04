@@ -26,11 +26,25 @@ $pink:                  #F1B6BB;
 $purple:                #953064;
 $greenPaper:            #37AD80;
 
+$pagecolor:             #DFDFDF;
+
 $multicolor:            #f0f;
 
 $nocolor: $red; // #f00;
 $yescolor: $green; // #016D17;
 $fixcolor: $yellow; // #ff0;
+
+@mixin fancy-shadow ($color: $pagecolor) {
+  @include vendor-prefix('text-shadow', -1px -1px 0 $color, 1px -1px 0 $color, 1px 1px 0 $color, -1px 1px 0 $color, -2px 2px 0 $color);
+}
+
+@mixin vendor-prefix($name, $argument...) {
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}
 
 body {
   background: #fafafa;
@@ -69,6 +83,7 @@ body {
   margin-left: -150px;
   text-align: center;
   top: 40%;
+  @include fancy-shadow;
 }
 
 #legend {
@@ -77,9 +92,10 @@ body {
   top: 10px;
   width: 200px;
   font-size: 20px;
-  background: #d6d2cb;
+  // background: #d6d2cb;
   border-radius: 3px;
   padding: 0 10px 10px;
+  // @include fancy-shadow;
 
   h3 {
     margin: 10px 0 0;
