@@ -99,7 +99,7 @@ class Viz
         )
 
     startAnimation: () ->
-        console.log "start animation", @history
+        # console.log "start animation", @history
         @playing = true
         @current_event = 0
         @nextEvent()

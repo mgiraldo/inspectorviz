@@ -343,11 +343,22 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
+            '{,*/}*.geojson',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
           dest: '<%= config.dist %>/.htaccess'
+        }, {
+          expand: true,
+          flatten: true,
+          src: 'bower_components/fontawesome/fonts/*',
+          dest: '<%= config.dist %>/fonts/'
+        }, {
+          expand: true,
+          flatten: true,
+          src: 'bower_components/mapbox.js/images/*',
+          dest: '<%= config.dist %>/styles/images/'
         }]
       },
       styles: {
@@ -398,7 +409,7 @@ module.exports = function (grunt) {
   });
 
 
-  grunt.registerTask('heroku:production', ['clean']);
+  grunt.registerTask('heroku:production', ['clean', 'build']);
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
     if (grunt.option('allow-remote')) {

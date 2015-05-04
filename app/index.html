@@ -15,21 +15,18 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" type="text/css" href="beep/Beep.css">
-    <link rel="stylesheet" type="text/css" href="beep/Beep.Trigger.css">
-    <link rel="stylesheet" type="text/css" href="beep/Beep.Instrument.css">
-    <link rel="stylesheet" type="text/css" href="beep/Beep.editor.css">
-
     <!-- endbuild -->
+
+    <!-- build:js scripts/beep.js -->
+    <script charset="utf-8" src="scripts/beep/Beep.js"></script>
+    <script charset="utf-8" src="scripts/beep/Beep.Note.js"></script>
+    <script charset="utf-8" src="scripts/beep/Beep.Voice.js"></script>
+    <script charset="utf-8" src="scripts/beep/Beep.Trigger.js"></script>
+    <script charset="utf-8" src="scripts/beep/Beep.Instrument.js"></script>
+    <!-- endbuild -->
+
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
-
-    <script charset="utf-8" src="/scripts/beep/Beep.js"></script>
-    <script charset="utf-8" src="/scripts/beep/Beep.Note.js"></script>
-    <script charset="utf-8" src="/scripts/beep/Beep.Voice.js"></script>
-    <script charset="utf-8" src="/scripts/beep/Beep.Trigger.js"></script>
-    <script charset="utf-8" src="/scripts/beep/Beep.Instrument.js"></script>
-    <script src="/scripts/animation.js"></script>
     <!-- endbuild -->
 
     <style>
@@ -86,8 +83,13 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
+
+    <!-- build:js scripts/utils.js -->
+    <script src="scripts/animation.js"></script>
+    <script charset="utf-8" src="scripts/easy-button.js"></script>
+    <!-- endbuild -->
+
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script charset="utf-8" src="/scripts/easy-button.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>
