@@ -17,7 +17,6 @@ class Viz
         @voices["toponym"] = new Beep.Voice( '5E♭').setOscillatorType( 'square' ).setGainHigh( 0.01 )
 
         @map = L.mapbox.map('map', 'nypllabs.g6ei9mm0',
-            detectRetina: false
             zoomControl: false
             animate: true
             scrollWheelZoom: false
@@ -41,6 +40,7 @@ class Viz
 
         @overlay = L.mapbox.tileLayer('https://s3.amazonaws.com/maptiles.nypl.org/859/859spec.json',
             detectRetina: false
+            zIndex: 1
             minZoom: @minZoom
             maxZoom: @maxZoom
         )
