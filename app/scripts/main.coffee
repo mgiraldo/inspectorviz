@@ -23,7 +23,6 @@ class Viz
             attributionControl: false
             minZoom: @minZoom
             maxZoom: @maxZoom
-            detectRetina: false
             dragging: true
         )
 
@@ -39,7 +38,11 @@ class Viz
             opacity: 0.2
         }
 
-        @overlay = L.mapbox.tileLayer('https://s3.amazonaws.com/maptiles.nypl.org/859/859spec.json')
+        @overlay = L.mapbox.tileLayer('https://s3.amazonaws.com/maptiles.nypl.org/859/859spec.json',
+            detectRetina: false
+            minZoom: @minZoom
+            maxZoom: @maxZoom
+        )
 
         @overlay.addTo(@map)
 
