@@ -40,7 +40,6 @@ class Viz
 
         @overlay = L.mapbox.tileLayer('https://s3.amazonaws.com/maptiles.nypl.org/859/859spec.json',
             detectRetina: false
-            zIndex: 1
             minZoom: @minZoom
             maxZoom: @maxZoom
         )
