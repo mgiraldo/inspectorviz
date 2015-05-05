@@ -102,7 +102,7 @@ Beep.editor = {
 				
 				if( node.nodeType === 3 ){
 					
-					nextCharIndex = charIndex + node.length
+					var nextCharIndex = charIndex + node.length
 
 					if( !foundStart && savedSel.start >= charIndex && savedSel.start <= nextCharIndex ){
 						
@@ -331,27 +331,25 @@ Beep.editor = {
 
 /*window.synth = new Beep.Instrument()
 /+
-.applyVoices( function(){
+.applyVoices( function(){ this.voices.push( 
 
-	this.voices.push( 
-
-		new Beep.Voice( this.note, this.audioContext )
+	new Beep.Voice( this.note, this.audioContext )
 		.setOscillatorType( 'sine' )
-		.setGainHigh( 0.50 ),
+		.setAttackGain( 0.50 ),
 
-		new Beep.Voice( this.note.hertz * 3 / 2, this.audioContext )
+	new Beep.Voice( this.note.hertz * 3 / 2, this.audioContext )
 		.setOscillatorType( 'triangle' )
-		.setGainHigh( 0.20 ),
+		.setAttackGain( 0.10 )
+		.setDelayDuration( 0.05 ),
 
-		new Beep.Voice( this.note.hertz * 4, this.audioContext )
+	new Beep.Voice( this.note.hertz * 4, this.audioContext )
 		.setOscillatorType( 'sawtooth' )
-		.setGainHigh( 0.01 ),
+		.setAttackGain( 0.01 ),
 
-		new Beep.Voice( this.note.hertz / 2, this.audioContext )
+	new Beep.Voice( this.note.hertz / 2, this.audioContext )
 		.setOscillatorType( 'square' )
-		.setGainHigh( 0.01 )
-	)
-})
+		.setAttackGain( 0.02 )
+)})
 .addStyleClass( 'rainbow' )
 .scorePlay()
 +/*/

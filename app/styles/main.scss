@@ -26,7 +26,7 @@ $pink:                  #F1B6BB;
 $purple:                #953064;
 $greenPaper:            #37AD80;
 
-$pagecolor:             #DFDFDF;
+$pagecolor:             #D5D1C6;
 
 $multicolor:            #f0f;
 
@@ -95,7 +95,7 @@ body {
   // background: #d6d2cb;
   border-radius: 3px;
   padding: 0 10px 10px;
-  // @include fancy-shadow;
+  @include fancy-shadow;
 
   h3 {
     margin: 10px 0 0;

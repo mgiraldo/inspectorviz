@@ -8,13 +8,13 @@ class Viz
         @minZoom = 18
         @maxZoom = 21
         # Set to ♭, ♮, or ♯
-        @voices["yes"] = new Beep.Voice( '1A♭').setOscillatorType( 'square' ).setGainHigh( 0.01 )
-        @voices["no"] = new Beep.Voice( '1A♮').setOscillatorType( 'square' ).setGainHigh( 0.01 )
-        @voices["fix"] = new Beep.Voice( '1A♯').setOscillatorType( 'square' ).setGainHigh( 0.01 )
-        @voices["color"] = new Beep.Voice( '2B♭').setOscillatorType( 'square' ).setGainHigh( 0.01 )
-        @voices["address"] = new Beep.Voice( '3C♭').setOscillatorType( 'square' ).setGainHigh( 0.01 )
-        @voices["polygonfix"] = new Beep.Voice( '4D♭').setOscillatorType( 'square' ).setGainHigh( 0.01 )
-        @voices["toponym"] = new Beep.Voice( '5E♭').setOscillatorType( 'square' ).setGainHigh( 0.01 )
+        @voices["yes"] = new Beep.Voice( '1A♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["no"] = new Beep.Voice( '1A♮').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["fix"] = new Beep.Voice( '1A♯').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["color"] = new Beep.Voice( '2B♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["address"] = new Beep.Voice( '3C♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["polygonfix"] = new Beep.Voice( '4D♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["toponym"] = new Beep.Voice( '5E♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
 
         @map = L.mapbox.map('map', 'nypllabs.g6ei9mm0',
             zoomControl: false
@@ -90,13 +90,13 @@ class Viz
     onMapZoom: () ->
         zoom = @map.getZoom()
         offset = (zoom - @minZoom) * 0.02
-        @voices["yes"].setGainHigh( 0.01 + offset )
-        @voices["no"].setGainHigh( 0.01 + offset )
-        @voices["fix"].setGainHigh( 0.01 + offset )
-        @voices["color"].setGainHigh( 0.01 + offset )
-        @voices["address"].setGainHigh( 0.01 + offset )
-        @voices["polygonfix"].setGainHigh( 0.01 + offset )
-        @voices["toponym"].setGainHigh( 0.01 + offset )
+        @voices["yes"].setAttackGain( 0.01 + offset )
+        @voices["no"].setAttackGain( 0.01 + offset )
+        @voices["fix"].setAttackGain( 0.01 + offset )
+        @voices["color"].setAttackGain( 0.01 + offset )
+        @voices["address"].setAttackGain( 0.01 + offset )
+        @voices["polygonfix"].setAttackGain( 0.01 + offset )
+        @voices["toponym"].setAttackGain( 0.01 + offset )
 
     getHistory: () ->
         $.getJSON('./geojson/history-226.geojson', (geojson) =>
@@ -157,7 +157,6 @@ class Viz
             @increaseElementValue("span.value.#{flag}")
             voice = @voices[flag]
             voice.play()
-            setTimeout((() => @muteVoice(voice)), 150 )
         else if type == "address"
             geo = obj
         else if type == "color"
@@ -178,7 +177,6 @@ class Viz
         if type != "geometry"
             voice = @voices[type]
             voice.play()
-            setTimeout((() => @muteVoice(voice)), 150 )
 
         @increaseElementValue("span.value.#{type}")
         @increaseElementValue("span.value.total")
@@ -209,9 +207,6 @@ class Viz
 
     killPolygon: (poly) ->
         @map.removeLayer(poly)
-
-    muteVoice: (voice) ->
-        voice.pause()
 
 $ ->
   window._viz = new Viz
