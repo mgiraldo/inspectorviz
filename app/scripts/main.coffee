@@ -103,12 +103,12 @@ class Viz
             @history = geojson.features
             # @startAnimation()
         )
+        @current_event = 0
 
     startAnimation: () ->
         $("#help").remove()
         # console.log "start animation", @history
         @playing = true
-        @current_event = 0
         @nextEvent()
 
     stopAnimation: () ->
