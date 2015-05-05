@@ -8,13 +8,13 @@ class Viz
         @minZoom = 18
         @maxZoom = 21
         # Set to ♭, ♮, or ♯
-        @voices["yes"] = new Beep.Voice( '1A♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
-        @voices["no"] = new Beep.Voice( '1A♮').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
-        @voices["fix"] = new Beep.Voice( '1A♯').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
-        @voices["color"] = new Beep.Voice( '2B♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
-        @voices["address"] = new Beep.Voice( '3C♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
-        @voices["polygonfix"] = new Beep.Voice( '4D♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
-        @voices["toponym"] = new Beep.Voice( '5E♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.2 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["yes"] = new Beep.Voice( '1A♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.150 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["no"] = new Beep.Voice( '1A♮').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.150 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["fix"] = new Beep.Voice( '1A♯').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.150 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["color"] = new Beep.Voice( '2B♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.150 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["address"] = new Beep.Voice( '3C♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.150 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["polygonfix"] = new Beep.Voice( '4D♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.150 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
+        @voices["toponym"] = new Beep.Voice( '5E♭').setOscillatorType( 'square' ).setAttackDuration( 0 ).setDecayDuration( 0 ).setSustainDuration( 0.150 ).setReleaseDuration( 0 ).setAttackGain( 0.01 )
 
         @map = L.mapbox.map('map', 'nypllabs.g6ei9mm0',
             zoomControl: false
@@ -40,7 +40,7 @@ class Viz
             opacity: 0.2
         }
 
-        @overlay = L.mapbox.tileLayer('https://s3.amazonaws.com/maptiles.nypl.org/859/859spec.json',
+        @overlay = L.tileLayer('http://maptiles.nypl.org/859/{z}/{x}/{y}.png',
             detectRetina: false
             minZoom: @minZoom
             maxZoom: @maxZoom
@@ -157,6 +157,7 @@ class Viz
             @increaseElementValue("span.value.#{flag}")
             voice = @voices[flag]
             voice.play()
+            # setTimeout((() => @muteVoice(voice)), 150 )
         else if type == "address"
             geo = obj
         else if type == "color"
@@ -177,6 +178,7 @@ class Viz
         if type != "geometry"
             voice = @voices[type]
             voice.play()
+            # setTimeout((() => @muteVoice(voice)), 150 )
 
         @increaseElementValue("span.value.#{type}")
         @increaseElementValue("span.value.total")
@@ -207,6 +209,9 @@ class Viz
 
     killPolygon: (poly) ->
         @map.removeLayer(poly)
+
+    muteVoice: (voice) ->
+        voice.pause()
 
 $ ->
   window._viz = new Viz
