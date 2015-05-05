@@ -157,7 +157,6 @@ class Viz
             @increaseElementValue("span.value.#{flag}")
             voice = @voices[flag]
             voice.play()
-            # setTimeout((() => @muteVoice(voice)), 150 )
         else if type == "address"
             geo = obj
         else if type == "color"
@@ -178,7 +177,6 @@ class Viz
         if type != "geometry"
             voice = @voices[type]
             voice.play()
-            # setTimeout((() => @muteVoice(voice)), 150 )
 
         @increaseElementValue("span.value.#{type}")
         @increaseElementValue("span.value.total")
@@ -209,9 +207,6 @@ class Viz
 
     killPolygon: (poly) ->
         @map.removeLayer(poly)
-
-    muteVoice: (voice) ->
-        voice.pause()
 
 $ ->
   window._viz = new Viz
